@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
-import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
+import { Switch, Route, Link, BrowserRouter, Redirect } from "react-router-dom";
 import AuthService from "./services/auth.service";
 
 import Login from "./components/Authentication/login.component";
@@ -18,15 +18,18 @@ class App extends Component {
 
     this.state = {
       currentUser: undefined,
+      isUserAuthenticated : false
     };
   }
 
   componentDidMount() {
     const user = AuthService.getCurrentUser();
+    
     console.log(user)
     if (user) {
       this.setState({
         currentUser: user[0],
+        isUserAuthenticated : true
       });
     }
   }
@@ -75,10 +78,23 @@ class App extends Component {
         </nav>
         <div className="mt-3" style={{ height: 400 }}>
           <Switch>
-          <Route exact path="/login" component={Login} />
+          <Route
+                exact
+                path="/"
+                render={() => {
+                    return (
+                      this.state.isUserAuthenticated ?
+                      <Redirect to="/home" /> :
+                      <Redirect to="/login" /> 
+                    )
+                }}
+              />
+          <Route  exact path="/login" component={Login} />
+          
             <Route exact path="/register" component={Register} />
-            <Route exact path={["/", "/home"]} component={() => <Home user = { currentUser } />} /> 
-            <Route exact path="/member_space" component={MemberSpace} />
+            <Route exact path="/home" component={() => <Home user = { currentUser } />} />
+            
+            <Route  path="/member_space" component={MemberSpace} />
             
           </Switch>
         </div>
