@@ -95,17 +95,19 @@ class App extends Component {
                 exact
                 path="/"
                 render={() => {
+                    const user = AuthService.getCurrentUser();
+                    
                     return (
-                      this.state.isUserAuthenticated ?
+                      user ?
                       <Redirect to="/home" /> :
                       <Redirect to="/login" /> 
                     )
                 }}
               />
-          <Route  exact path="/login" component={Login} />
-          
+          <Route  exact path={"/login"} component={Login} />
+
             <Route exact path="/register" component={Register} />
-            <Route exact path="/home" component={() => <Home user = { currentUser } />} />
+            <Route exact path={"/home"} component={() => <Home user = { currentUser } />} />
             
             <Route  path="/member_space" component={MemberSpace} />
             
