@@ -70,7 +70,7 @@ export default class MemberSpace extends Component {
                 <Switch>
                   <Route
                     exact
-                    path="/member_space/activities"
+                    path={["/member_space" , "/member_space/activities"]}
                     component={ActivitiesDashBoard}
                   />
                   <Route
