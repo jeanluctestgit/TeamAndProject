@@ -11,6 +11,9 @@ import Home from "./components/Home/home.component";
 import MemberSpace from './components/MemberSpace/member_space.component';
 
 
+
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,7 @@ class App extends Component {
 
     this.state = {
       currentUser: undefined,
-      isUserAuthenticated : false
+      isUserAuthenticated: false
     };
   }
 
@@ -29,16 +32,23 @@ class App extends Component {
     if (user) {
       this.setState({
         currentUser: user[0],
-        isUserAuthenticated : true
+        isUserAuthenticated: true
       });
     }
   }
 
+  
+
+  
+
+
+  
+
   handleLeavePage = (e) => {
-    
+
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     window.removeEventListener('beforeunload', this.handleLeavePage);
   }
 
@@ -46,7 +56,7 @@ class App extends Component {
     AuthService.logout();
     this.setState({
       currentUser: undefined,
-      isUserAuthenticated : false
+      isUserAuthenticated: false
     });
   }
 
@@ -74,46 +84,46 @@ class App extends Component {
               </li>
             </div>
           ) : (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
+              <div className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link to={"/login"} className="nav-link">
+                    Login
                 </Link>
-              </li>
+                </li>
 
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
+                <li className="nav-item">
+                  <Link to={"/register"} className="nav-link">
+                    Sign Up
                 </Link>
-              </li>
-            </div>
-          )}
+                </li>
+              </div>
+            )}
         </nav>
         <div className="mt-3" style={{ height: 400 }}>
           <Switch>
-          <Route
-                exact
-                path="/"
-                render={() => {
-                    const user = AuthService.getCurrentUser();
-                    
-                    return (
-                      user ?
-                      <Redirect to="/home" /> :
-                      <Redirect to="/login" /> 
-                    )
-                }}
-              />
-          <Route  exact path={"/login"} component={Login} />
+            <Route
+              exact
+              path="/"
+              render={() => {
+                const user = AuthService.getCurrentUser();
+
+                return (
+                  user ?
+                    <Redirect to="/home" /> :
+                    <Redirect to="/login" />
+                )
+              }}
+            />
+            <Route exact path={"/login"} component={Login} />
 
             <Route exact path="/register" component={Register} />
-            <Route exact path={"/home"} component={() => <Home user = { currentUser } />} />
-            
-            <Route  path="/member_space" component={MemberSpace} />
-            
+            <Route exact path={"/home"} component={() => <Home user={currentUser} />} />
+
+            <Route path="/member_space" component={MemberSpace} />
+
           </Switch>
         </div>
-        
+
       </div>
     );
   }
