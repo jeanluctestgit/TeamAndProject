@@ -54,29 +54,29 @@ export default class Login extends Component {
 
     if (this.checkBtn.context._errors.length === 0) {
 
-        AuthService.login(this.state.username, this.state.password);
-        this.props.history.push("/home");
-        window.location.reload();
-        
-     /* AuthService.login(this.state.username, this.state.password).then(
-        () => {
-          this.props.history.push("/profile");
-          window.location.reload();
-        },
-        error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      AuthService.login(this.state.username, this.state.password);
+      this.props.history.push("/home");
+      window.location.reload();
 
-          this.setState({
-            loading: false,
-            message: resMessage
-          });
-        }
-      );*/
+      /* AuthService.login(this.state.username, this.state.password).then(
+         () => {
+           this.props.history.push("/profile");
+           window.location.reload();
+         },
+         error => {
+           const resMessage =
+             (error.response &&
+               error.response.data &&
+               error.response.data.message) ||
+             error.message ||
+             error.toString();
+ 
+           this.setState({
+             loading: false,
+             message: resMessage
+           });
+         }
+       );*/
     } else {
       this.setState({
         loading: false
@@ -87,7 +87,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="col-md-12">
-        <div className="card card-container">
+        <div className="card card-container card-outline" style={{ borderTop: '4px solid black' }}>
           <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
             alt="profile-img"
@@ -102,6 +102,7 @@ export default class Login extends Component {
           >
             <div className="form-group">
               <label htmlFor="username">Username</label>
+              <div class="input-group ">
               <Input
                 type="text"
                 className="form-control"
@@ -110,6 +111,13 @@ export default class Login extends Component {
                 onChange={this.onChangeUsername}
                 validations={[required]}
               />
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
+              </div>
+              </div>
+              
             </div>
 
             <div className="form-group">
