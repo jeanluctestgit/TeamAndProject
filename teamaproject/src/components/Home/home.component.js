@@ -85,6 +85,7 @@ export default class Home extends Component {
     project._id = updateData ? parseInt(project_id) : projects.length + 1;
     project.name = project_name;
     project.description = project_description;
+    project.created_by = this.state.currentUser;
     project.collaborators = collaborators;
     const projectIndex = projects.findIndex(p => p._id === project._id);
     const newProjects = updateData ? update(projects, {
