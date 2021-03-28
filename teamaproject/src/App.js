@@ -1,15 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
+import '../node_modules/react-keyed-file-browser/dist/react-keyed-file-browser.css';
+ 
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
-import { Switch, Route, Link, BrowserRouter, Redirect } from "react-router-dom";
+import { Switch, Route, Link, BrowserRouter, Redirect, withRouter } from "react-router-dom";
 import AuthService from "./services/auth.service";
 
 import Login from "./components/Authentication/login.component";
 import Register from "./components/Authentication/register.component";
 import Home from "./components/Home/home.component";
 import MemberSpace from './components/MemberSpace/member_space.component';
-
+import Avatar, { ConfigProvider } from "react-avatar";
 
 
 
@@ -66,15 +68,18 @@ class App extends Component {
     return (
       <div>
         
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-fixed-top navbar-dark bg-dark" style = {{position : 'sticky' , top : 0 , zIndex : 15}}>
           <Link to={"/"} className="navbar-brand">
             Team & Project
           </Link>
           {currentUser && this.state.isUserAuthenticated ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
+                
                 <Link to={"/"} className="nav-link">
-                  {currentUser.username}
+                <Avatar name = {currentUser.username} size={32} round={true} />
+                <span style = {{padding : 5}}>{currentUser.username}</span>
+                  
                 </Link>
               </li>
               <li className="nav-item">
@@ -119,7 +124,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path={"/home"} component={() => <Home user={currentUser} />} />
 
-            <Route path="/member_space" component={MemberSpace} />
+            <Route path="/member_space" component={() => <MemberSpace />} />
 
           </Switch>
         </div>

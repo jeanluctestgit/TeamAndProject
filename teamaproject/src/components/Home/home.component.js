@@ -7,7 +7,7 @@ import {
   ListGroupItem,
   ListGroup,
 } from "react-bootstrap";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link ,NavLink} from "react-router-dom";
 import user from "../../fixtures/user.fixture";
 import project from "../../fixtures/project.fixture";
 import update from "immutability-helper";
@@ -163,6 +163,7 @@ export default class Home extends Component {
     }
   };
   render() {
+    
     return (
       <div className="container">
         <div className="jumbotron">
@@ -249,7 +250,7 @@ export default class Home extends Component {
                         alignItems: "center",
                       }}
                     >
-                      <Link to={{
+                      <NavLink to={{
                         pathname: "/member_space",
                         projectprops: {
                           user: this.state.currentUser,
@@ -257,7 +258,7 @@ export default class Home extends Component {
                         }
                       }} className="btn btn-primary">
                         Follow
-                      </Link>
+                      </NavLink>
                       <Button onClick={(e) => this.handleUpdateProject(e, p._id)}>Update</Button>
                       <Button onClick={(e) => this.handleDeleteProject(e, p._id)} style={{ display: p.created_by === this.state.currentUser ? 'block' : 'none' }}>Delete</Button>
                     </td>
