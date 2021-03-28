@@ -10,7 +10,7 @@ export default class UserCalendar extends Component {
   }
   render() {
     return (
-      <div>
+      <div className = "container" style = {{ width : 860 , height : 960}}>
         Calendar
             <pre>
                {

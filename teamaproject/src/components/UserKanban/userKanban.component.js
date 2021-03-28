@@ -286,7 +286,7 @@ class UserKanban extends Component {
                       
                       
                     >
-                      <Modal.Header closeButton>
+                      <Modal.Header className="primary" style = {{ backgroundColor : '#559dc9' , color : 'white'}} closeButton>
                         <Modal.Title>Task</Modal.Title>
                       </Modal.Header>
                       <Modal.Body>
