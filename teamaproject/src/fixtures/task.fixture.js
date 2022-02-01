@@ -6,8 +6,8 @@ const tasks = [
       description:
         "aaaaaaaaaaaaaaaaaaazzzzzzzzzzzzzzzzzzzzzzzzeeeeeeeeeeeeeeeeeeeeeerrrrrrrrrrrrrrrrrrrrrrrttttttttttttttttttyyyyyyyyyy",
       validation: "",
-      start: "2021-03-12",
-      end: "2021-03-23",
+      start: new Date().toISOString().split('T')[0],
+      end: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0],
       status: "todo",
       for: ["titi","Foo Bar", "Jean-luc Deshayes"],
     },
@@ -17,8 +17,8 @@ const tasks = [
       category: "Init",
       description: "",
       validation: "",
-      start: "2021-03-12",
-      end: "2021-03-12",
+      start: new Date(new Date().setDate(new Date().getDate() + 4)).toISOString().split('T')[0],
+      end: new Date(new Date().setDate(new Date().getDate() + 12)).toISOString().split('T')[0],
       status: "doing",
       for: ["titi","Foo Bar", "Jean-luc Deshayes"],
     },
@@ -28,10 +28,10 @@ const tasks = [
       category: "Init",
       description: "",
       validation: "",
-      start: "",
-      end: "",
+      start: new Date(new Date().setDate(new Date().getDate() + 13)).toISOString().split('T')[0],
+      end: new Date(new Date().setDate(new Date().getDate() + 24)).toISOString().split('T')[0],
       status: "todo",
-      for: ["Foo Bar", "Jean-luc Deshayes"],
+      for: ["Foo Bar", "Jean-luc Deshayes" , "titi"],
     },
     {
       _id: 4,
@@ -121,6 +121,7 @@ const tasks = [
     { _id: 2, name: "Meddy Seize" },
     { _id: 3, name: "Foo Bar" },
     { _id: 4, name: "Jean-luc Deshayes" },
+     {_id: 5, name: "titi" },
   ];
   
   let labelsMap = {

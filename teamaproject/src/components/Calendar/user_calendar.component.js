@@ -10,14 +10,17 @@ export default class UserCalendar extends Component {
   }
   render() {
     return (
-      <div className = "container" style = {{ width : 860 , height : 960}}>
-        Calendar
-            <pre>
-               {
+      
+      <div  >
+        <div>
+          <h1>Calendar {
                  JSON.stringify(this.props.currentUser)
-               }
+               }</h1>
+            <pre>
+               
             </pre>
-            
+      </div>
+            <div className = "container" style = {{ width : 860 , height : 960}}>
             <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" 
                           events = {tasks
                             .filter((item) => item.for.includes(this.props.currentUser))
@@ -28,6 +31,8 @@ export default class UserCalendar extends Component {
                   end : item.end
               }
           })}  themeSystem = 'bootstrap'/>
+            </div >
+            
        
         
        

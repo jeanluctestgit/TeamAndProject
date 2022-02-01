@@ -5,7 +5,7 @@ const API_URL = "http://localhost:8081/api/auth/";
 
 class AuthService {
   login(username, password) {
-     return axios
+     /*return axios
       .post(API_URL + "signin", {
         username,
         password
@@ -16,10 +16,10 @@ class AuthService {
         }
 
         return response.data;
-      });
-      /*let _user = user.filter((item) => (item.username === username));
+      });*/
+      let _user = user.filter((item) => (item.username === username));
       console.log(_user);
-      localStorage.setItem("user",JSON.stringify(_user));*/
+      localStorage.setItem("user",JSON.stringify(_user));
   }
 
   logout() {
@@ -29,12 +29,12 @@ class AuthService {
 
   register(username, email, password) {
     
-    //user.push({username : username , useremail : email , userpassword : password})
-    return axios.post(API_URL + "signup", {
+    user.push({username : username , useremail : email , userpassword : password})
+    /*return axios.post(API_URL + "signup", {
       username,
       email,
       password
-    });
+    });*/
   }
 
   getCurrentUser() {

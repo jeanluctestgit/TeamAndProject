@@ -150,7 +150,9 @@ class Activities extends Component {
   handleSaveChannel = (event) => {
     event.preventDefault();
     let tname = new FormData(event.target);
-    channels = [...channels, tname.get("Channel")];
+    console.log(channels);
+    //channels = [...channels, tname.get("Channel")];
+    channels.push(tname.get("Channel"));
     labelsMap[tname.get("Channel")] = tname.get("Channel");
     this.setState({ show: false });
   };
